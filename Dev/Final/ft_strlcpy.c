@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 17:34:35 by pbielik           #+#    #+#             */
-/*   Updated: 2021/03/08 19:32:12 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/03/09 15:26:46 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t maxlen)
 {
 	size_t srclen;
 
-	srclen = ft_strlen(src);
 	if (!dest || !src)
 		return (0);
+	srclen = ft_strlen(src);
 	if (maxlen == 0)
 	{
 		while (src[srclen])

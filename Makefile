@@ -51,7 +51,7 @@ SRC = $(SRC_DIR)ft_putchar_fd.c \
 		$(SRC_DIR)ft_tolower.c \
 		$(SRC_DIR)ft_toupper.c \
 		$(SRC_DIR)ft_wrdcnt.c \
-		$(SRC_DIR)ft_counter.c \
+		$(SRC_DIR)ft_counter.c
 
 SRC_B = $(SRC_DIR)ft_lstnew.c \
 		$(SRC_DIR)ft_lstadd_front.c \
@@ -61,14 +61,14 @@ SRC_B = $(SRC_DIR)ft_lstnew.c \
 		$(SRC_DIR)ft_lstdelone.c \
 		$(SRC_DIR)ft_lstclear.c \
 		$(SRC_DIR)ft_lstiter.c \
-		$(SRC_DIR)ft_lstmap.c \
+		$(SRC_DIR)ft_lstmap.c
 
 
 OBJ += $(SRC:.c=.o)
 
 OBJ_B += $(SRC_B:.c=.o)
 
-BUILD_PRINT = @echo "\033[1;96m		    [LIBFT] \033[0;32mBuilding $<\033[1;92m"
+BUILD_PRINT = @echo "\033[1;96m		 [LIBFT]\033 \033[38;5;82mBuilding $<"
 DONE = @cat ./graphic_assets/done
 CLEAN_O = @echo "\033[38;5;246mObject files removed! [LIBFT]\033[0m"
 CLEAN_A = @echo "\033[38;5;246mExecutable removed! [LIBFT]\033[0m"
@@ -207,7 +207,7 @@ coffee:
 rebonus: fclean bonus
 
 logo:
-	@echo "\033[1;32m"
+	@echo "\033[38;5;46m"
 	@cat ./graphic_assets/logo
 
 .PHONY: all bonus clean fclean re rebonus logo coffee
