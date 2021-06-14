@@ -1,72 +1,79 @@
-CC = gcc
 NAME = libft.a
-FLAGS += -g -Wall -Wextra -Werror
 
-SRC_DIR 	= srcs/
+CC = gcc
+FLAGS = -g -Wall -Wextra -Werror
+AR = ar rcs
 
-HEADERS 	= ./includes
+HEADER 	= include
 
-SRC = $(SRC_DIR)ft_putchar_fd.c \
-		$(SRC_DIR)ft_putendl_fd.c \
-		$(SRC_DIR)ft_putnbr_fd.c \
-		$(SRC_DIR)ft_putstr_fd.c \
-		$(SRC_DIR)ft_bzero.c \
-		$(SRC_DIR)ft_calloc.c \
-		$(SRC_DIR)ft_memccpy.c \
-		$(SRC_DIR)ft_memchr.c \
-		$(SRC_DIR)ft_memcmp.c \
-		$(SRC_DIR)ft_memcpy.c \
-		$(SRC_DIR)ft_memset.c \
-		$(SRC_DIR)ft_memmove.c \
-		$(SRC_DIR)ft_atoi.c \
-		$(SRC_DIR)ft_itoa.c \
-		$(SRC_DIR)ft_putnbr.c \
-		$(SRC_DIR)ft_putchar.c \
-		$(SRC_DIR)ft_putendl.c \
-		$(SRC_DIR)ft_putstr.c \
-		$(SRC_DIR)ft_split.c \
-		$(SRC_DIR)ft_strchr.c \
-		$(SRC_DIR)ft_strcpy.c \
-		$(SRC_DIR)ft_strdup.c \
-		$(SRC_DIR)ft_strjoin.c \
-		$(SRC_DIR)ft_strlcat.c \
-		$(SRC_DIR)ft_strlcpy.c \
-		$(SRC_DIR)ft_strlen.c \
-		$(SRC_DIR)ft_strmap.c \
-		$(SRC_DIR)ft_strmapi.c \
-		$(SRC_DIR)ft_strncmp.c \
-		$(SRC_DIR)ft_strndup.c \
-		$(SRC_DIR)ft_strnlen.c \
-		$(SRC_DIR)ft_strnstr.c \
-		$(SRC_DIR)ft_strrchr.c \
-		$(SRC_DIR)ft_strstr.c \
-		$(SRC_DIR)ft_strtrim.c \
-		$(SRC_DIR)ft_substr.c \
-		$(SRC_DIR)ft_isalnum.c \
-		$(SRC_DIR)ft_isalpha.c \
-		$(SRC_DIR)ft_isascii.c \
-		$(SRC_DIR)ft_isdigit.c \
-		$(SRC_DIR)ft_isprint.c \
-		$(SRC_DIR)ft_isspace.c \
-		$(SRC_DIR)ft_tolower.c \
-		$(SRC_DIR)ft_toupper.c \
-		$(SRC_DIR)ft_wrdcnt.c \
-		$(SRC_DIR)ft_counter.c
+SRC_DIR = src
+OBJS_DIR = objs
 
-SRC_B = $(SRC_DIR)ft_lstnew.c \
-		$(SRC_DIR)ft_lstadd_front.c \
-		$(SRC_DIR)ft_lstsize.c \
-		$(SRC_DIR)ft_lstlast.c \
-		$(SRC_DIR)ft_lstadd_back.c \
-		$(SRC_DIR)ft_lstdelone.c \
-		$(SRC_DIR)ft_lstclear.c \
-		$(SRC_DIR)ft_lstiter.c \
-		$(SRC_DIR)ft_lstmap.c
+SOURCES =	ft_putchar_fd.c \
+			ft_putendl_fd.c \
+			ft_putnbr_fd.c \
+			ft_putstr_fd.c \
+			ft_bzero.c \
+			ft_calloc.c \
+			ft_memccpy.c \
+			ft_memchr.c \
+			ft_memcmp.c \
+			ft_memcpy.c \
+			ft_memset.c \
+			ft_memmove.c \
+			ft_atoi.c \
+			ft_itoa.c \
+			ft_putnbr.c \
+			ft_putchar.c \
+			ft_putendl.c \
+			ft_putstr.c \
+			ft_split.c \
+			ft_strchr.c \
+			ft_strcpy.c \
+			ft_strdup.c \
+			ft_strjoin.c \
+			ft_strlcat.c \
+			ft_strlcpy.c \
+			ft_strlen.c \
+			ft_strmap.c \
+			ft_strmapi.c \
+			ft_strncmp.c \
+			ft_strndup.c \
+			ft_strnlen.c \
+			ft_strnstr.c \
+			ft_strrchr.c \
+			ft_strstr.c \
+			ft_strtrim.c \
+			ft_substr.c \
+			ft_isalnum.c \
+			ft_isalpha.c \
+			ft_isascii.c \
+			ft_isdigit.c \
+			ft_isprint.c \
+			ft_isspace.c \
+			ft_tolower.c \
+			ft_toupper.c \
+			ft_wrdcnt.c \
+			ft_counter.c \
+			ft_putnbr_base.c \
+			ft_numLength.c \
+			ft_numLengthBase.c \
+			ft_uitoa.c
+
+SOURCES_BONUS = 	ft_lstnew.c \
+					ft_lstadd_front.c \
+					ft_lstsize.c \
+					ft_lstlast.c \
+					ft_lstadd_back.c \
+					ft_lstdelone.c \
+					ft_lstclear.c \
+					ft_lstiter.c \
+					ft_lstmap.c
 
 
-OBJ += $(SRC:.c=.o)
+OBJS = $(addprefix $(OBJS_DIR)/,$(SOURCES:.c=.o))
+OBJS_B = $(addprefix $(OBJS_DIR)/,$(SOURCES_BONUS:.c=.o))
 
-OBJ_B += $(SRC_B:.c=.o)
 
 BUILD_PRINT = @echo "\033[1;96m		 [LIBFT]\033 \033[38;5;82mBuilding $<"
 DONE = @cat ./graphic_assets/done
@@ -74,26 +81,24 @@ CLEAN_O = @echo "\033[38;5;246mObject files removed! [LIBFT]\033[0m"
 CLEAN_A = @echo "\033[38;5;246mExecutable removed! [LIBFT]\033[0m"
 
 
-all: logo $(NAME)
+all: $(NAME)
 
-$(OBJ): %.o: %.c
-	$(BUILD_PRINT)
-	@$(CC) $(FLAGS) -I $(HEADERS) -c $< -o $@
-
-$(OBJ_B): %.o: %.c
-	$(BUILD_PRINT)
-	@$(CC) $(FLAGS) -I $(HEADERS) -c $< -o $@
-
-$(NAME): $(OBJ)
-	@ar rcs $(NAME) $(OBJ)
+$(NAME): $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
 	$(DONE)
 
-bonus: logo $(OBJ) $(OBJ_B)
-	@ar rcs $(NAME) $(OBJ) $(OBJ_B)
+$(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
+	$(BUILD_PRINT)
+	@mkdir -p objs
+	@$(CC) $(FLAGS) -I $(HEADER) -c $< -o $@
+
+bonus: $(OBJS) $(OBJS_B)
+	@ar rcs $(NAME) $(OBJS) $(OBJS_B)
 	$(DONE)
 
 clean:
-	@rm -rf $(OBJ) $(OBJ_B)
+	@rm -f $(OBJS) $(OBJS_B)
+	@rm -rf $(OBJS_DIR)
 	$(CLEAN_O)
 
 fclean: clean
@@ -210,4 +215,3 @@ logo:
 	@echo "\033[38;5;46m"
 	@cat ./graphic_assets/logo
 
-.PHONY: all bonus clean fclean re rebonus logo coffee
