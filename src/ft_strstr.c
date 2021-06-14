@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 20:13:41 by pbielik           #+#    #+#             */
-/*   Updated: 2021/02/17 18:41:42 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 20:13:50 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strstr(const char *str1, const char *str2)
 {
-	size_t n;
+	size_t	n;
 
 	n = ft_strlen(str2);
 	if (*str2 == '\0')

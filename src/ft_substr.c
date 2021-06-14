@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 18:22:02 by pbielik           #+#    #+#             */
-/*   Updated: 2021/03/09 15:28:18 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 20:25:07 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 		min_len = ft_strlen(&s[start]);
 		if (min_len < len)
 			len = min_len;
-		if (!(sub = malloc(sizeof(char) * len + 1)))
+		sub = malloc(sizeof(char) * len + 1);
+		if (!sub)
 			return (NULL);
 		i = start;
 		while (s[i] && (i - start) < len)

@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 18:21:31 by pbielik           #+#    #+#             */
-/*   Updated: 2021/02/15 20:16:23 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 20:26:59 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ char	*ft_strtrim(const char *s1, const char *set)
 		while (s1[beg + end - 1] != 0 && ft_strchr(set, s1[beg + end - 1]) != 0)
 			end--;
 	}
-	if (!(trim = malloc(sizeof(char) * end + 1)))
+	trim = malloc(sizeof(char) * end + 1);
+	if (!trim)
 		return (NULL);
 	ft_strlcpy(trim, s1 + beg, end + 1);
 	trim[end] = '\0';

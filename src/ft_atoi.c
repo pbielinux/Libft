@@ -6,13 +6,13 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 17:05:26 by pbielik           #+#    #+#             */
-/*   Updated: 2021/02/17 18:37:17 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 20:28:43 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *s)
+int	ft_atoi(const char *s)
 {
 	int		sign;
 	int		r;

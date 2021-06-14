@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 17:13:49 by pbielik           #+#    #+#             */
-/*   Updated: 2021/03/08 18:56:54 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 20:24:23 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_memset(void *str, char c, size_t n)
 	size_t	i;
 	char	*s;
 
-	s = (char*)str;
+	s = (char *)str;
 	i = 0;
 	while (i < n)
 	{

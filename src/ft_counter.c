@@ -6,13 +6,13 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 19:44:18 by pbielik           #+#    #+#             */
-/*   Updated: 2021/03/08 19:46:00 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 20:26:00 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_counter(int n)
+int	ft_counter(int n)
 {
 	size_t	counter;
 

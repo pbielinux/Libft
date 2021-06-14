@@ -6,13 +6,13 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 17:06:55 by pbielik           #+#    #+#             */
-/*   Updated: 2021/02/15 18:42:47 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 20:28:53 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isalnum(int c)
+int	ft_isalnum(int c)
 {
 	if ((c >= 'a' && c <= 'z')
 		|| (c >= 'A' && c <= 'Z')

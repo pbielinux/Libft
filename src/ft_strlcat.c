@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 17:34:15 by pbielik           #+#    #+#             */
-/*   Updated: 2021/02/15 20:00:42 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 20:27:51 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_strlcat(char *dest, const char *src, size_t maxlen)
 {
-	size_t srclen;
-	size_t destlen;
+	size_t	srclen;
+	size_t	destlen;
 
 	srclen = ft_strlen(src);
 	destlen = ft_strnlen(dest, maxlen);

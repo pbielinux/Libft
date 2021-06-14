@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 17:33:11 by pbielik           #+#    #+#             */
-/*   Updated: 2021/02/15 19:56:21 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 20:25:50 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strcpy(char *dest, const char *src)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (src[i] != '\0')

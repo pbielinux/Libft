@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 17:34:35 by pbielik           #+#    #+#             */
-/*   Updated: 2021/03/09 15:26:46 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 20:11:42 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t maxlen)
 {
-	size_t srclen;
+	size_t	srclen;
 
 	if (!dest || !src)
 		return (0);

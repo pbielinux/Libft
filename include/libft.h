@@ -6,22 +6,22 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:50:09 by pbielik           #+#    #+#             */
-/*   Updated: 2021/06/14 20:03:08 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 20:35:25 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-# define LIBFT_H
+# define	LIBFT_H
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 
-typedef	struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}	t_list;
 
 int					ft_atoi(const char *s);
 void				ft_bzero(void *str, size_t n);
@@ -78,7 +78,7 @@ void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-								void (*del)(void *));
+						void (*del)(void *));
 int					ft_numLength(long n);
 int					ft_numLengthBase(unsigned long n, int base);
 char				*ft_uitoa(unsigned int n);

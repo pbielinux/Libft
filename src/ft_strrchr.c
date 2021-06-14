@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 18:21:14 by pbielik           #+#    #+#             */
-/*   Updated: 2021/02/15 20:13:11 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 20:23:16 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	const char *found;
-	const char *pnt;
+	const char	*found;
+	const char	*pnt;
 
 	c = (unsigned char)c;
 	if (c == '\0')
 		return (ft_strchr(s, c));
 	found = NULL;
-	while ((pnt = ft_strchr(s, c)) != NULL)
+	pnt = ft_strchr(s, c);
+	while (pnt != NULL)
 	{
 		found = pnt;
 		s = pnt + 1;
+		pnt = ft_strchr(s, c);
 	}
 	return ((char *)found);
 }
