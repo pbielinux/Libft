@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:50:09 by pbielik           #+#    #+#             */
-/*   Updated: 2021/06/14 17:17:38 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 20:03:08 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 int					ft_numLength(long n);
 int					ft_numLengthBase(unsigned long n, int base);
 char				*ft_uitoa(unsigned int n);
+int					ft_putnbrBase(unsigned long n, char *base);
 
 #endif
