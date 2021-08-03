@@ -7,8 +7,6 @@ AR = ar rcs
 HEADER 	= include
 
 SRC_DIR = src
-OBJS_DIR = objs
-
 SOURCES =	ft_putchar_fd.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c \
@@ -58,160 +56,58 @@ SOURCES =	ft_putchar_fd.c \
 			ft_putnbr_base.c \
 			ft_numLength.c \
 			ft_numLengthBase.c \
-			ft_uitoa.c
+			ft_uitoa.c \
+			ft_lstnew.c \
+			ft_lstadd_front.c \
+			ft_lstsize.c \
+			ft_lstlast.c \
+			ft_lstadd_back.c \
+			ft_lstdelone.c \
+			ft_lstclear.c \
+			ft_lstiter.c \
+			ft_lstmap.c
 
-SOURCES_BONUS = 	ft_lstnew.c \
-					ft_lstadd_front.c \
-					ft_lstsize.c \
-					ft_lstlast.c \
-					ft_lstadd_back.c \
-					ft_lstdelone.c \
-					ft_lstclear.c \
-					ft_lstiter.c \
-					ft_lstmap.c
 
-
+OBJS_DIR = objects/
 OBJS = $(addprefix $(OBJS_DIR)/,$(SOURCES:.c=.o))
-OBJS_B = $(addprefix $(OBJS_DIR)/,$(SOURCES_BONUS:.c=.o))
 
 
-BUILD_PRINT = @echo "\033[1;96m		 [LIBFT]\033 \033[38;5;82mBuilding $<"
 DONE = @cat ./graphic_assets/done
-CLEAN_O = @echo "\033[38;5;246mObject files removed! [LIBFT]\033[0m"
-CLEAN_A = @echo "\033[38;5;246mExecutable removed! [LIBFT]\033[0m"
+GREEN = \033[0;32m
+GREENGREEN = \033[38;5;46m
+RED = \033[0;31m
+BLUE = \033[0;34m
+RESET = \033[0m
 
+all: logo $(NAME)
 
-all: $(NAME)
-
-$(NAME): $(OBJS)
+$(NAME): $(OBJS_DIR) $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
+	@echo "$(GREENGREEN)"
 	$(DONE)
+
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
+	@echo "[$(GREEN)LIBFT$(RESET)] $(BLUE)$(OBJS_DIR) was created \n$(RESET)"
 
 $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
-	$(BUILD_PRINT)
-	@mkdir -p objs
 	@$(CC) $(FLAGS) -I $(HEADER) -c $< -o $@
-
-bonus: $(OBJS) $(OBJS_B)
-	@ar rcs $(NAME) $(OBJS) $(OBJS_B)
-	$(DONE)
+	@echo "$(GREEN)//$(RESET)\c"
 
 clean:
-	@rm -f $(OBJS) $(OBJS_B)
 	@rm -rf $(OBJS_DIR)
-	$(CLEAN_O)
+	@echo "[$(GREEN)LIBFT$(RESET)]$(RED) Object files were removed! $(RESET)"
 
 fclean: clean
 	@rm -rf $(NAME)
-	$(CLEAN_A)
+	@echo "[$(GREEN)LIBFT$(RESET)]$(RED) Executable was removed!$(RESET)"
 
 re: fclean all
 
-coffee:
-	@echo "\033[1;96m"
-	@clear
-	@echo ""
-	@echo "                   ("
-	@echo "	                     )     ("
-	@echo "               ___...(-------)-....___"
-	@echo '           .-""       )    (          ""-.'
-	@echo "      .-''''|-._             )         _.-|"
-	@echo '     /  .--.|   `""---...........---""`   |'
-	@echo "    /  /    |                             |"
-	@echo "    |  |    |                             |"
-	@echo "     \  \   |                             |"
-	@echo "      '\ '\ |                             |"
-	@echo "        '\ '|                             |"
-	@echo "        _/ /\                             /"
-	@echo "       (__/  \                           /"
-	@echo '    _..---""` \                         /`""---.._'
-	@echo " .-'           \                       /          '-."
-	@echo ":               '-.__             __.-'              :"
-	@echo ':                  ) ""---...---"" (                :'
-	@echo "\'._                '"--...___...--"'              _.'"
-	@echo '   \""--..__                              __..--""/'
-	@echo "     '._     """----.....______.....----"""         _.'"
-	@echo '         ""--..,,_____            _____,,..--"""'''
-	@echo '                      """------"""'
-	@sleep 0.5
-	@clear
-	@echo ""
-	@echo "                 ("
-	@echo "	                  )      ("
-	@echo "               ___..(.------)--....___"
-	@echo '           .-""       )   (           ""-.'
-	@echo "      .-''''|-._      (       )        _.-|"
-	@echo '     /  .--.|   `""---...........---""`   |'
-	@echo "    /  /    |                             |"
-	@echo "    |  |    |                             |"
-	@echo "     \  \   |                             |"
-	@echo "      '\ '\ |                             |"
-	@echo "        '\ '|                             |"
-	@echo "        _/ /\                             /"
-	@echo "       (__/  \                           /"
-	@echo '    _..---""` \                         /`""---.._'
-	@echo " .-'           \                       /          '-."
-	@echo ":               '-.__             __.-'              :"
-	@echo ':                  ) ""---...---"" (                :'
-	@echo "\'._                '"--...___...--"'              _.'"
-	@echo '   \""--..__                              __..--""/'
-	@echo "     '._     """----.....______.....----"""         _.'"
-	@echo '         ""--..,,_____            _____,,..--"""'''
-	@echo '                      """------"""'
-	@sleep 0.5
-	@clear
-	@echo ""
-	@echo "               ("
-	@echo "	                  )     ("
-	@echo "               ___..(.------)--....___"
-	@echo '           .-""      )    (           ""-.'
-	@echo "      .-''''|-._      (       )        _.-|"
-	@echo '     /  .--.|   `""---...........---""`   |'
-	@echo "    /  /    |                             |"
-	@echo "    |  |    |                             |"
-	@echo "     \  \   |                             |"
-	@echo "      '\ '\ |                             |"
-	@echo "        '\ '|                             |"
-	@echo "        _/ /\                             /"
-	@echo "       (__/  \                           /"
-	@echo '    _..---""` \                         /`""---.._'
-	@echo " .-'           \                       /          '-."
-	@echo ":               '-.__             __.-'              :"
-	@echo ':                  ) ""---...---"" (                :'
-	@echo "\'._                '"--...___...--"'              _.'"
-	@echo '   \""--..__                              __..--""/'
-	@echo "     '._     """----.....______.....----"""         _.'"
-	@echo '         ""--..,,_____            _____,,..--"""'''
-	@echo '                      """------"""'
-	@sleep 0.5
-	@clear
-	@echo ""
-	@echo "             (         ) "
-	@echo "	              )        ("
-	@echo "               ___)...----)----....___"
-	@echo '           .-""      )    (           ""-.'
-	@echo "      .-''''|-._      (       )        _.-|"
-	@echo '     /  .--.|   `""---...........---""`   |'
-	@echo "    /  /    |                             |"
-	@echo "    |  |    |                             |"
-	@echo "     \  \   |                             |"
-	@echo "      '\ '\ |                             |"
-	@echo "        '\ '|                             |"
-	@echo "        _/ /\                             /"
-	@echo "       (__/  \                           /"
-	@echo '    _..---""` \                         /`""---.._'
-	@echo " .-'           \                       /          '-."
-	@echo ":               '-.__             __.-'              :"
-	@echo ':                  ) ""---...---"" (                :'
-	@echo "\'._                '"--...___...--"'              _.'"
-	@echo '   \""--..__                              __..--""/'
-	@echo "     '._     """----.....______.....----"""         _.'"
-	@echo '         ""--..,,_____            _____,,..--"""'''
-	@echo '                      """------"""'
-
-rebonus: fclean bonus
-
 logo:
-	@echo "\033[38;5;46m"
+	@echo "$(GREENGREEN)"
 	@cat ./graphic_assets/logo
+	@echo "$(RESET)"
+
+
 
