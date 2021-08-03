@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:50:09 by pbielik           #+#    #+#             */
-/*   Updated: 2021/06/14 20:36:43 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/08/03 22:01:34 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -32,6 +33,7 @@ int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isprint(int c);
 int					ft_isspace(int c);
+int					ft_isupper(int c);
 char				*ft_itoa(int n);
 void				*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void				*ft_memchr(const void *str, int c, size_t n);
@@ -52,6 +54,7 @@ char				*ft_strchr(const char *str, int c);
 char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strdup(const char *str);
 char				*ft_strjoin(const char *s1, const char *s2);
+char				*ft_strcat(char	*dst, const char	*src);
 size_t				ft_strlcat(char *dest, const char *src, size_t maxlen);
 size_t				ft_strlcpy(char *dest, const char *src, size_t maxlen);
 size_t				ft_strlen(const char *str);
@@ -83,5 +86,6 @@ int					ft_numLength(long n);
 int					ft_numLengthBase(unsigned long n, int base);
 char				*ft_uitoa(unsigned int n);
 int					ft_putnbrBase(unsigned long n, char *base);
+long				ft_strtol(const char *nptr, char **endptr, int base);
 
 #endif

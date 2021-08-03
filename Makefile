@@ -21,6 +21,7 @@ SOURCES =	ft_putchar_fd.c \
 			ft_memmove.c \
 			ft_atoi.c \
 			ft_itoa.c \
+			ft_strtol.c \
 			ft_putnbr.c \
 			ft_putchar.c \
 			ft_putendl.c \
@@ -30,6 +31,7 @@ SOURCES =	ft_putchar_fd.c \
 			ft_strcpy.c \
 			ft_strdup.c \
 			ft_strjoin.c \
+			ft_strcat.c \
 			ft_strlcat.c \
 			ft_strlcpy.c \
 			ft_strlen.c \
@@ -49,6 +51,7 @@ SOURCES =	ft_putchar_fd.c \
 			ft_isdigit.c \
 			ft_isprint.c \
 			ft_isspace.c \
+			ft_isupper.c \
 			ft_tolower.c \
 			ft_toupper.c \
 			ft_wrdcnt.c \
