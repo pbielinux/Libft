@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:50:09 by pbielik           #+#    #+#             */
-/*   Updated: 2021/08/03 22:01:34 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/08/12 18:53:17 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ int					ft_numLengthBase(unsigned long n, int base);
 char				*ft_uitoa(unsigned int n);
 int					ft_putnbrBase(unsigned long n, char *base);
 long				ft_strtol(const char *nptr, char **endptr, int base);
+int					ft_lerpi(int first, int second, double p);
+double			ft_map(double nb, double	in_min, double in_max, double out_min, double out_max);
 
 #endif
