@@ -94,7 +94,7 @@ $(NAME): $(OBJS_DIR) $(OBJS)
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
-	@echo "[$(GREEN)LIBFT$(RESET)] $(BLUE)$(OBJS_DIR) was created \n$(RESET)"
+	@echo "\n[$(GREENGREEN) LIB_FT $(RESET)]: Objects Directory was created \n$(RESET)"
 
 $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(FLAGS) -I $(HEADER) -c $< -o $@
@@ -102,11 +102,11 @@ $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	@rm -rf $(OBJS_DIR)
-	@echo "[$(GREEN)LIBFT$(RESET)]$(RED) Object files were removed! $(RESET)"
+	@echo "\n[$(GREENGREEN) LIB_FT $(RESET)]: $(RED)Object files were removed! $(RESET)"
 
 fclean: clean
 	@rm -rf $(NAME)
-	@echo "[$(GREEN)LIBFT$(RESET)]$(RED) Executable was removed!$(RESET)"
+	@echo "\n[$(GREENGREEN) LIB_FT $(RESET)]: $(RED)Executable was removed!$(RESET)"
 
 re: fclean all
 
