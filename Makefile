@@ -90,6 +90,7 @@ $(NAME): $(OBJS_DIR) $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
 	@echo "$(GREENGREEN)"
 	$(DONE)
+	@echo "\n"
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
@@ -97,7 +98,7 @@ $(OBJS_DIR):
 
 $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(FLAGS) -I $(HEADER) -c $< -o $@
-	@echo "$(GREEN)//$(RESET)\c"
+	@echo "$(GREEN)/$(RESET)\c"
 
 clean:
 	@rm -rf $(OBJS_DIR)
