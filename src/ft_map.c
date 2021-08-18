@@ -1,6 +1,7 @@
 #include "libft.h"
 
-double	ft_map(double nb, double	in_min, double in_max, double out_min, double out_max)
+double	ft_map(double nb, t_range range)
 {
-	return (out_min + ((out_max - out_min) / (in_max - in_min)) * (nb - in_min));
+	return (range.out_min + ((range.out_max - range.out_min)
+			/ (range.in_max - range.in_min)) * (nb - range.in_min));
 }

@@ -22,7 +22,15 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}	t_list;
+}				t_list;
+
+typedef struct s_range
+{
+	double	in_min;
+	double	in_max;
+	double	out_min;
+	double	out_max;
+}				t_range;
 
 int					ft_atoi(const char *s);
 void				ft_bzero(void *str, size_t n);
@@ -88,6 +96,6 @@ char				*ft_uitoa(unsigned int n);
 int					ft_putnbrBase(unsigned long n, char *base);
 long				ft_strtol(const char *nptr, char **endptr, int base);
 int					ft_lerpi(int first, int second, double p);
-double			ft_map(double nb, double	in_min, double in_max, double out_min, double out_max);
+double				ft_map(double nb, t_range range);
 
 #endif

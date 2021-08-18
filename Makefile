@@ -1,7 +1,7 @@
 NAME = libft.a
 
 CC = gcc
-FLAGS = -g -Wall -Wextra -Werror
+FLAGS = -O3 -Wall -Wextra -Werror
 AR = ar rcs
 
 HEADER 	= include
@@ -21,7 +21,6 @@ SOURCES =	ft_putchar_fd.c \
 			ft_memmove.c \
 			ft_atoi.c \
 			ft_itoa.c \
-			ft_strtol.c \
 			ft_putnbr.c \
 			ft_putchar.c \
 			ft_putendl.c \

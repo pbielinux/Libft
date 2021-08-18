@@ -8,5 +8,5 @@ char	*ft_strcat(char	*dst, const char	*src)
 	while (*src != '\0')
 		*ptr++ = *src++;
 	*ptr = '\0';
-	return dst;
+	return (dst);
 }
