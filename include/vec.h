@@ -128,7 +128,7 @@ void		vec_set(t_vec *self, size_t index, const void *value);
  * Call:                        | v's Items after:
  * vec_splice(&v, 2, 0, a, 2)   | [100, 200, 800, 900, 300, 400]
  * vec_splice(&v, 2, 1, a, 2)   | [100, 200, 800, 900, 400]
- * vec_splice(&v, 0, 0, a, 2)   | [800, 900, 100, 200, 300, 400]
+ * vec_splice(&v, 0, 0, a, 2)   | [800, 900, 100, 200, 300, 400]`
  * vec_splice(&v, 0, 3, a, 1)   | [800, 400]
  */
 

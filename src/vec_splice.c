@@ -19,9 +19,15 @@ static void	insert_items(t_vec *self, t_splice *splice);
 
 void	vec_splice(t_vec *self, t_splice splice)
 {
-	if ((splice.index + splice.delete_count) > self->length
-		|| splice.index > self->length)
+	if ((splice.index + splice.delete_count) > self->length)
+	{
+		write(1, "!\n", 2);
 		exit_on_error(__LINE__);
+	}
+	if (splice.index > self->length)
+	{
+		exit_on_error(__LINE__);
+	}
 	ensure_capacity(self, splice.index + splice.insert_count);
 	if (splice.delete_count > 0)
 	{
