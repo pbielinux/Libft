@@ -15,6 +15,12 @@
 
 # include <stdlib.h>
 # include <stdbool.h>
+# include <string.h>
+# include <stdio.h>
+
+# include "guards.h"
+# include "vec.h"
+# include "stacktrace.h"
 
 /**
  * vec - a dynamically growable array of any type.
