@@ -23,7 +23,7 @@ void	strvec_set(t_strvec *self, size_t index, t_str value)
 	splice.insert_count = 1;
 	if (index == vec_length(self))
 	{
-		vec_splice(self, splice);
+		vec_splice(self, &splice);
 	}
 	else
 	{

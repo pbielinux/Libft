@@ -14,13 +14,13 @@
 
 static void	exit_on_error(unsigned int line);
 
-void	str_splice(t_str *self, t_splice splice)
+void	str_splice(t_str *self, t_splice *splice)
 {
-	if (splice.delete_count + splice.index > str_length(self))
+	if (splice->delete_count + splice->index > str_length(self))
 	{
 		exit_on_error(__LINE__);
 	}
-	else if (splice.index > str_length(self))
+	else if (splice->index > str_length(self))
 	{
 		exit_on_error(__LINE__);
 	}

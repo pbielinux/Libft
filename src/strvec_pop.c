@@ -22,6 +22,6 @@ t_str	strvec_pop(t_strvec *self)
 	splice.items = NULL;
 	splice.insert_count = 0;
 	popped_str = *((t_str *)(vec_ref(self, vec_length(self) - 1)));
-	vec_splice(self, splice);
+	vec_splice(self, &splice);
 	return (popped_str);
 }

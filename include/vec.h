@@ -45,6 +45,7 @@ typedef struct s_splice
 	size_t		index;
 	size_t		delete_count;
 	const void	*items;
+	const char	*cstr;
 	size_t		insert_count;
 	char		*dest;
 	char		*src;
@@ -132,6 +133,6 @@ void		vec_set(t_vec *self, size_t index, const void *value);
  * vec_splice(&v, 0, 3, a, 1)   | [800, 400]
  */
 
-void		vec_splice(t_vec *self, t_splice splice);
+void		vec_splice(t_vec *self, t_splice *splice);
 
 #endif

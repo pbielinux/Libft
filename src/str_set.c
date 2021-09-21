@@ -24,12 +24,12 @@ void	str_set(t_str *self, size_t index, const char value)
 	splice.insert_count = 1;
 	if (index < str_length(self))
 	{
-		str_splice(self, splice);
+		str_splice(self, &splice);
 	}
 	else if (index == str_length(self))
 	{
 		splice.delete_count = 0;
-		str_splice(self, splice);
+		str_splice(self, &splice);
 	}
 	else
 		exit_on_error(__LINE__);

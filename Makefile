@@ -51,6 +51,7 @@ leak-check: ${executable}
 
 # clean: Delete all artifacts produced in the build process
 clean:
+	rm -rf ./${project}
 	rm -rf ${build_dir}
 
 # variables: Print variables in this Makefile for Makefile debugging

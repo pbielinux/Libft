@@ -12,7 +12,7 @@
 
 #include "str_vec.h"
 
-t_strvec	strvec_value(size_t capacity)
+void	strvec_push(t_strvec *self, t_str value)
 {
-	return (vec_value(capacity, sizeof(t_str)));
+	vec_set(self, vec_length(self), &value);
 }

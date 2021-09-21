@@ -12,7 +12,7 @@
 
 #include "str_vec.h"
 
-void	strvec_push(t_strvec *self, t_str value)
+t_str	*strvec_ref(const t_strvec *self, size_t index)
 {
-	vec_set(self, vec_length(self), &value);
+	return ((t_str *)(vec_ref(self, index)));
 }

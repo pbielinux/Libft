@@ -21,10 +21,10 @@ void	vec_set(t_vec *self, size_t index, const void *value)
 	splice.items = value;
 	splice.insert_count = 1;
 	if (index == self->length)
-		vec_splice(self, splice);
+		vec_splice(self, &splice);
 	else
 	{
 		splice.delete_count = 1;
-		vec_splice(self, splice);
+		vec_splice(self, &splice);
 	}
 }
