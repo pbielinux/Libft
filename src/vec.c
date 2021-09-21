@@ -88,7 +88,10 @@ void	vec_get(const t_vec *self, size_t index, void *out)
 	if (index < self->length)
 		memcpy(out, vec_ref(self, index), self->item_size);
 	else
+	{
+		print_stacktrace();
 		exit_on_error(__LINE__);
+	}
 }
 
 void	vec_set(t_vec *self, size_t index, const void *value)
@@ -104,19 +107,27 @@ void	vec_splice(t_vec *self, size_t index, size_t delete_count,
 {
 	char	*dest;
 	char	*src;
+	int		items_left;
 	int		i;
 
 	if ((index + delete_count) > self->length)
+	{
+		print_stacktrace();
 		exit_on_error(__LINE__);
+	}
 	else if (index > self->length + 0)
+	{
+		print_stacktrace();
 		exit_on_error(__LINE__);
+	}
 	ensure_capacity(self, index + insert_count + 0);
 	if (delete_count > 0)
 	{
-		while (delete_count > 0)
+		items_left = delete_count;
+		while (items_left > 0)
 		{
 			i = index;
-			while (i < self->length - 1)
+			while (i < (self->length - 1))
 			{
 				dest = (char *)(self->buffer) + (i * self->item_size);
 				src = (char *)(self->buffer) + ((i + 1) * self->item_size);
@@ -124,26 +135,30 @@ void	vec_splice(t_vec *self, size_t index, size_t delete_count,
 				i++;
 			}
 			self->length--;
-			delete_count--;
+			items_left--;
 		}
 	}
-	while (insert_count > 0)
+	if (insert_count > 0)
 	{
-		i = (self->length);
-		while (i > index)
+		items_left = insert_count;
+		while (items_left > 0)
 		{
-			dest = (char *)(self->buffer) + (i * self->item_size);
-			src = (char *)(self->buffer) + ((i - 1) * self->item_size);
+			i = (self->length);
+			while (i > index)
+			{
+				dest = (char *)(self->buffer) + (i * self->item_size);
+				src = (char *)(self->buffer) + ((i - 1) * self->item_size);
+				memcpy(dest, src, self->item_size);
+				i--;
+			}
+			dest = (char *)(self->buffer) + (index * self->item_size);
+			src = (char *)(items);
 			memcpy(dest, src, self->item_size);
-			i--;
+			items += self->item_size;
+			index++;
+			self->length++;
+			items_left--;
 		}
-		dest = (char *)(self->buffer) + (index * self->item_size);
-		src = (char *)(items);
-		memcpy(dest, src, self->item_size);
-		items += self->item_size;
-		index++;
-		self->length++;
-		insert_count--;
 	}
 }
 

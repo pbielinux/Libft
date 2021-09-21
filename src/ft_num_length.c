@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_num_length.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbielik <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 02:42:57 by pbielik           #+#    #+#             */
-/*   Updated: 2021/09/21 02:42:59 by pbielik          ###   ########.fr       */
+/*   Created: 2021/09/21 02:42:02 by pbielik           #+#    #+#             */
+/*   Updated: 2021/09/21 02:42:03 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char	*dst, const char	*src)
+int	ft_num_length(long n)
 {
-	char	*ptr;
+	int	count;
 
-	ptr = dst + ft_strlen(src);
-	while (*src != '\0')
-		*ptr++ = *src++;
-	*ptr = '\0';
-	return (dst);
+	count = 0;
+	if (n <= 0)
+	{
+		count += 1;
+		n *= -1;
+	}
+	while (n > 0)
+	{
+		count++;
+		n /= 10;
+	}
+	return (count);
 }

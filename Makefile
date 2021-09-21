@@ -1,118 +1,66 @@
-NAME = libft.a
+project 			 := libft.a
 
-CC = gcc
-FLAGS = -O3 -Wall -Wextra -Werror
-AR = ar rcs
+# Variables for path s of source, header
+inc_dir 			 := ./include
+src_dir 			 := ./src
+sources 			 := $(wildcard ${src_dir}/*.c)
 
-HEADER 	= include
+# Variables for paths of object file and binary targets
+build_dir   		 := ./build
+obj_dir 			 := ${build_dir}/obj
+bin_dir 			 := ${build_dir}/bin
+executable 			 := ${bin_dir}/${project}
+build_dirs 			 := ${obj_dir} ${bin_dir}
+objects 			 := $(subst .c,.o,$(subst ${src_dir},${obj_dir},${sources}))
 
-SRC_DIR = src
-SOURCES =	ft_putchar_fd.c \
-			ft_putendl_fd.c \
-			ft_putnbr_fd.c \
-			ft_putstr_fd.c \
-			ft_bzero.c \
-			ft_calloc.c \
-			ft_memccpy.c \
-			ft_memchr.c \
-			ft_memcmp.c \
-			ft_memcpy.c \
-			ft_memset.c \
-			ft_memmove.c \
-			ft_atoi.c \
-			ft_itoa.c \
-			ft_putnbr.c \
-			ft_putchar.c \
-			ft_putendl.c \
-			ft_putstr.c \
-			ft_split.c \
-			ft_strchr.c \
-			ft_strcpy.c \
-			ft_strdup.c \
-			ft_strjoin.c \
-			ft_strcat.c \
-			ft_strlcat.c \
-			ft_strlcpy.c \
-			ft_strlen.c \
-			ft_strmap.c \
-			ft_strmapi.c \
-			ft_strncmp.c \
-			ft_strndup.c \
-			ft_strnlen.c \
-			ft_strnstr.c \
-			ft_strrchr.c \
-			ft_strstr.c \
-			ft_strtrim.c \
-			ft_substr.c \
-			ft_isalnum.c \
-			ft_isalpha.c \
-			ft_isascii.c \
-			ft_isdigit.c \
-			ft_isprint.c \
-			ft_isspace.c \
-			ft_isupper.c \
-			ft_tolower.c \
-			ft_toupper.c \
-			ft_wrdcnt.c \
-			ft_counter.c \
-			ft_putnbr_base.c \
-			ft_numLength.c \
-			ft_numLengthBase.c \
-			ft_uitoa.c \
-			ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c \
-			ft_map.c \
-			ft_lerpi.c
+# C Compiler Configuration
+CC      			 := gcc # Using gcc compiler (alternative: clang)
+CFLAGS				 := -I${inc_dir} -g -Wall -std=c11 -O0
+# CFLAGS options:
+# -g 			Compile with debug symbols in binary files
+# -Wall 		Warnings: all - display every single warning
+# -std=c11  	Use the C2011 feature set
+# -I${inc_dir}  Look in the include directory for include files
+# -O0 			Disable compilation optimizations
 
+# Phony rules do not create artifacts but are usefull workflow
+.PHONY: all run lint clean 
+.PHONY: leak-check variables path-to-bin
 
-OBJS_DIR = objects/
-OBJS = $(addprefix $(OBJS_DIR)/,$(SOURCES:.c=.o))
+# all is the default goal
+all: ${executable}
 
+${executable}: ${objects} | ${bin_dir}
+	ar rcs ${project} ${objects}
 
-DONE = @cat ./graphic_assets/done
-GREEN = \033[0;32m
-GREENGREEN = \033[38;5;46m
-RED = \033[0;31m
-BLUE = \033[0;34m
-RESET = \033[0m
+# Build object files from sources in a template pattern
+${obj_dir}/%.o: ${src_dir}/%.c | ${obj_dir}
+	${CC} ${CFLAGS} -c -o ${@} ${<}
 
-all: logo $(NAME)
+# The build directories should be recreated when prerequisite
+${build_dirs}:
+	mkdir -p ${@}
 
-$(NAME): $(OBJS_DIR) $(OBJS)
-	@ar rcs $(NAME) $(OBJS)
-	@echo "$(GREENGREEN)"
-	$(DONE)
-	@echo "\n"
+# Run static analysis to find issues
+lint:
+	splint ${SPLINT_FLAGS} -I${inc_dir} ${sources}
 
-$(OBJS_DIR):
-	@mkdir -p $(OBJS_DIR)
-	@echo "\n[$(GREENGREEN) LIB_FT $(RESET)]: Objects Directory was created \n$(RESET)"
+# Start a valgrind process
+leak-check: ${executable}
+	valgrind --leak-check=full ${^}
 
-$(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(CC) $(FLAGS) -I $(HEADER) -c $< -o $@
-	@echo "$(GREEN)/$(RESET)\c"
-
+# clean: Delete all artifacts produced in the build process
 clean:
-	@rm -rf $(OBJS_DIR)
-	@echo "\n[$(GREENGREEN) LIB_FT $(RESET)]: $(RED)Object files were removed! $(RESET)"
+	rm -rf ${build_dir}
 
-fclean: clean
-	@rm -rf $(NAME)
-	@echo "\n[$(GREENGREEN) LIB_FT $(RESET)]: $(RED)Executable was removed!$(RESET)"
-
-re: fclean all
-
-logo:
-	@echo "$(GREENGREEN)"
-	@cat ./graphic_assets/logo
-	@echo "$(RESET)"
+# variables: Print variables in this Makefile for Makefile debugging
+variables:
+	@echo "Sources: ${sources}"
+	@echo "Executable: ${executable}"
+	@echo "Build Dirs: ${build_dirs}"
+	@echo "Objects: ${objects}"
+	@echo "C Compiler: ${CC}"
+	@echo "C Compiler Flags: ${CFLAGS}"
 
 
 

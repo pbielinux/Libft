@@ -1,6 +1,18 @@
-#ifndef STACKTRACE_H
-#define STACKTRACE_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stacktrace.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pbielik <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/21 02:31:30 by pbielik           #+#    #+#             */
+/*   Updated: 2021/09/21 02:31:32 by pbielik          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void print_stacktrace(void);
+#ifndef STACKTRACE_H
+# define STACKTRACE_H
+
+void	print_stacktrace(void);
 
 #endif

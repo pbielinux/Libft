@@ -11,12 +11,19 @@
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-# define	LIBFT_H
+# define LIBFT_H
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <limits.h>
+
+# include "guards.h"
+# include "stacktrace.h"
+# include "str_vec.h"
+# include "str.h"
+# include "token.h"
+# include "vec.h"
 
 typedef struct s_list
 {
@@ -90,10 +97,10 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
-int					ft_numLength(long n);
-int					ft_numLengthBase(unsigned long n, int base);
+int					ft_num_length(long n);
+int					ft_num_length_base(unsigned long n, int base);
 char				*ft_uitoa(unsigned int n);
-int					ft_putnbrBase(unsigned long n, char *base);
+int					ft_putnbr_base(unsigned long n, char *base);
 long				ft_strtol(const char *nptr, char **endptr, int base);
 int					ft_lerpi(int first, int second, double p);
 double				ft_map(double nb, t_range range);

@@ -1,8 +1,20 @@
-#ifndef VEC_H
-#define VEC_H 
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vec.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pbielik <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/21 02:36:18 by pbielik           #+#    #+#             */
+/*   Updated: 2021/09/21 02:36:19 by pbielik          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdbool.h>
+#ifndef VEC_H
+# define VEC_H 
+
+# include <stdlib.h>
+# include <stdbool.h>
 
 /**
  * vec - a dynamically growable array of any type.
@@ -14,12 +26,12 @@
  * Users of vec should not access these members directly!
  * Instead, use the operations exposed in the functions below.
  */
-typedef struct	s_vec
+typedef struct s_vec
 {
-	size_t	item_size;	/* size of an item in bytes */
-	size_t	length;		/* number of items in vec */
-	size_t	capacity;	/* number of items buffer can store */
-	void	*buffer;	/* heap memory storing items */
+	size_t	item_size;
+	size_t	length;
+	size_t	capacity;
+	void	*buffer;
 }				t_vec;
 
 /* Constructor / Destructor */
@@ -32,33 +44,33 @@ typedef struct	s_vec
  * @param item_size - sizeof an individual item
  * @return initialized vec value.
  */
-t_vec vec_value(size_t capacity, size_t item_size);
+t_vec		vec_value(size_t capacity, size_t item_size);
 
 /**
  * Owner must call to expire a vec value's lifetime.
  * Frees any heap memory the vec owns.
  * Resets length, capacity to zero, buffer to NULL.
  */
-void vec_drop(t_vec *self);
+void		vec_drop(t_vec *self);
 
 /* Accessors */
 
 /**
  * Returns the number of items in the vec.
  */
-size_t vec_length(const t_vec *self);
+size_t		vec_length(const t_vec *self);
 
 /**
  * Returns a pointer to the items array _for reading only_.
  * You should not write to the returned memory directly!
  */
-const void *vec_items(const t_vec *self);
+const void	*vec_items(const t_vec *self);
 
 /**
  * Compare deep equality with another vec. Should return true
  * if vecs are equal in length and buffer content.
  */
-bool vec_equals(const t_vec *self, const t_vec *other);
+bool		vec_equals(const t_vec *self, const t_vec *other);
 
 /* Operations */
 
@@ -66,19 +78,19 @@ bool vec_equals(const t_vec *self, const t_vec *other);
  * Get a pointer to the item at `index`. You may
  * write to this reference, but not beyond it.
  */
-void *vec_ref(const t_vec *self, size_t index);
+void		*vec_ref(const t_vec *self, size_t index);
 
 /**
  * Copy the item at `index` to the memory of `out`.
  */
-void vec_get(const t_vec *self, size_t index, void *out);
+void		vec_get(const t_vec *self, size_t index, void *out);
 
 /**
  * Assign an item at `index` to be a copy of `value`.
  * Valid indices include 0-length. When the index is equal
  * to length, the item is appended to the vec.
  */
-void vec_set(t_vec *self, size_t index, const void *value);
+void		vec_set(t_vec *self, size_t index, const void *value);
 
 /**
  * Starting from `index`, remove `delete_count` items from `self`'s buffer, 
@@ -101,11 +113,18 @@ void vec_set(t_vec *self, size_t index, const void *value);
  * vec_splice(&v, 0, 0, a, 2)   | [800, 900, 100, 200, 300, 400]
  * vec_splice(&v, 0, 3, a, 1)   | [800, 400]
  */
-void vec_splice(
-	t_vec *self,
-	size_t index,
-	size_t delete_count,
-	const void *items,
-	size_t insert_count);
+
+typedef struct s_count
+{
+	size_t	delete_count;
+	size_t	insert_count;
+}	t_count;
+
+void		vec_splice(
+				t_vec *self,
+				size_t index,
+				size_t delete_count,
+				const void *items,
+				size_t insert_count);
 
 #endif
