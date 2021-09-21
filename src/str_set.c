@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_ref.c                                          :+:      :+:    :+:   */
+/*   str_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbielik <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 16:16:44 by pbielik           #+#    #+#             */
-/*   Updated: 2021/09/21 16:16:45 by pbielik          ###   ########.fr       */
+/*   Created: 2021/09/21 17:15:27 by pbielik           #+#    #+#             */
+/*   Updated: 2021/09/21 17:15:28 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec.h"
+#include "str.h"
 
 static void	exit_on_error(unsigned int line);
 
-void	*vec_ref(const t_vec *self, size_t index)
+void	str_set(t_str *self, size_t index, const char value)
 {
-	if (index < self->length)
-		return (self->buffer + (index * self->item_size));
-	else
+	t_splice	splice;
+
+	splice.index = index;
+	splice.delete_count = 1;
+	splice.items = &value;
+	splice.insert_count = 1;
+	if (index < str_length(self))
 	{
-		print_stacktrace();
-		exit_on_error(__LINE__);
+		str_splice(self, splice);
 	}
-	return (NULL);
+	else if (index == str_length(self))
+	{
+		splice.delete_count = 0;
+		str_splice(self, splice);
+	}
+	else
+		exit_on_error(__LINE__);
 }
 
 static void	exit_on_error(unsigned int line)
 {
-	fprintf(stderr, "%s:%d - Out of Bounds\n", __FILE__, line);
+	fprintf(stderr, "%s:%d - Out of Bounds", __FILE__, line);
 	exit(EXIT_FAILURE);
 }

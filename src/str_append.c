@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_ref.c                                          :+:      :+:    :+:   */
+/*   str_append.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbielik <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 16:16:44 by pbielik           #+#    #+#             */
-/*   Updated: 2021/09/21 16:16:45 by pbielik          ###   ########.fr       */
+/*   Created: 2021/09/21 17:14:03 by pbielik           #+#    #+#             */
+/*   Updated: 2021/09/21 17:14:04 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec.h"
+#include "str.h"
 
-static void	exit_on_error(unsigned int line);
-
-void	*vec_ref(const t_vec *self, size_t index)
+void	str_append(t_str *self, const char *cstr)
 {
-	if (index < self->length)
-		return (self->buffer + (index * self->item_size));
-	else
+	t_splice	splice;
+	char		null;
+
+	null = '\0';
+	splice.index = str_length(self);
+	splice.delete_count = 0;
+	splice.items = (char *)cstr;
+	splice.insert_count = 0;
+	while (*(cstr + splice.insert_count) != null)
 	{
-		print_stacktrace();
-		exit_on_error(__LINE__);
+		splice.insert_count++;
 	}
-	return (NULL);
-}
-
-static void	exit_on_error(unsigned int line)
-{
-	fprintf(stderr, "%s:%d - Out of Bounds\n", __FILE__, line);
-	exit(EXIT_FAILURE);
+	str_splice(self, splice);
 }

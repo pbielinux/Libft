@@ -17,7 +17,7 @@ char	*ft_uitoa(unsigned int n)
 	char	*a;
 	int		len;
 
-	len = ft_numLength(n);
+	len = ft_num_length(n);
 	a = (char *)malloc(sizeof(char) * (len + 1));
 	if (!a)
 		return (NULL);

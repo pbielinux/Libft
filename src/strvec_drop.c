@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_ref.c                                          :+:      :+:    :+:   */
+/*   strvec_drop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbielik <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 16:16:44 by pbielik           #+#    #+#             */
-/*   Updated: 2021/09/21 16:16:45 by pbielik          ###   ########.fr       */
+/*   Created: 2021/09/21 17:04:33 by pbielik           #+#    #+#             */
+/*   Updated: 2021/09/21 17:04:34 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec.h"
+#include "str_vec.h"
 
-static void	exit_on_error(unsigned int line);
-
-void	*vec_ref(const t_vec *self, size_t index)
+void	strvec_drop(t_strvec *self)
 {
-	if (index < self->length)
-		return (self->buffer + (index * self->item_size));
-	else
+	t_str	to_drop;
+
+	while (strvec_length(self) != 0)
 	{
-		print_stacktrace();
-		exit_on_error(__LINE__);
+		to_drop = strvec_pop(self);
+		str_drop(&to_drop);
 	}
-	return (NULL);
-}
-
-static void	exit_on_error(unsigned int line)
-{
-	fprintf(stderr, "%s:%d - Out of Bounds\n", __FILE__, line);
-	exit(EXIT_FAILURE);
+	vec_drop(self);
 }

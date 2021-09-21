@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vec_get.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pbielik <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/21 16:16:07 by pbielik           #+#    #+#             */
+/*   Updated: 2021/09/21 16:16:10 by pbielik          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vec.h"
 
-static void	ensure_capacity(t_vec *self, size_t n);
 static void	exit_on_error(unsigned int line);
 
 void	vec_get(const t_vec *self, size_t index, void *out)
@@ -11,19 +22,6 @@ void	vec_get(const t_vec *self, size_t index, void *out)
 	{
 		print_stacktrace();
 		exit_on_error(__LINE__);
-	}
-}
-
-static void	ensure_capacity(t_vec *self, size_t n)
-{
-	size_t	new_capacity;
-
-	if (n > self->capacity)
-	{
-		new_capacity = n * 2;
-		self->buffer = realloc(self->buffer, new_capacity * self->item_size);
-		omm_guard(self->buffer, __FILE__, __LINE__);
-		self->capacity = new_capacity;
 	}
 }
 

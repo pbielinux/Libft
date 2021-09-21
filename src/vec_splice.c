@@ -1,65 +1,74 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vec_splice.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pbielik <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/21 16:16:59 by pbielik           #+#    #+#             */
+/*   Updated: 2021/09/21 16:17:00 by pbielik          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vec.h"
+#include "libft.h"
 
 static void	ensure_capacity(t_vec *self, size_t n);
 static void	exit_on_error(unsigned int line);
+static void	insert_items(t_vec *self, t_splice *splice);
 
-void	vec_splice(t_vec *self, size_t index, size_t delete_count,
-		const void *items, size_t insert_count)
+void	vec_splice(t_vec *self, t_splice splice)
 {
-	char	*dest;
-	char	*src;
-	int		items_left;
-	int		i;
-
-	if ((index + delete_count) > self->length)
-	{
-		print_stacktrace();
+	if ((splice.index + splice.delete_count) > self->length
+		|| splice.index > self->length)
 		exit_on_error(__LINE__);
-	}
-	else if (index > self->length + 0)
+	ensure_capacity(self, splice.index + splice.insert_count);
+	if (splice.delete_count > 0)
 	{
-		print_stacktrace();
-		exit_on_error(__LINE__);
-	}
-	ensure_capacity(self, index + insert_count + 0);
-	if (delete_count > 0)
-	{
-		items_left = delete_count;
-		while (items_left > 0)
+		splice.items_left = splice.delete_count;
+		while (splice.items_left > 0)
 		{
-			i = index;
-			while (i < (self->length - 1))
+			splice.i = splice.index;
+			while (splice.i < (self->length - 1))
 			{
-				dest = (char *)(self->buffer) + (i * self->item_size);
-				src = (char *)(self->buffer) + ((i + 1) * self->item_size);
-				memcpy(dest, src, self->item_size);
-				i++;
+				splice.dest = (char *)(self->buffer)
+					+ (splice.i * self->item_size);
+				splice.src = (char *)(self->buffer)
+					+ ((splice.i + 1) * self->item_size);
+				ft_memcpy(splice.dest, splice.src, self->item_size);
+				splice.i++;
 			}
 			self->length--;
-			items_left--;
+			splice.items_left--;
 		}
 	}
-	if (insert_count > 0)
+	if (splice.insert_count > 0)
+		insert_items(self, &splice);
+}
+
+static void	insert_items(t_vec *self, t_splice *splice)
+{
+	splice->items_left = splice->insert_count;
+	while (splice->items_left > 0)
 	{
-		items_left = insert_count;
-		while (items_left > 0)
+		splice->i = (self->length);
+		while (splice->i > splice->index)
 		{
-			i = (self->length);
-			while (i > index)
-			{
-				dest = (char *)(self->buffer) + (i * self->item_size);
-				src = (char *)(self->buffer) + ((i - 1) * self->item_size);
-				memcpy(dest, src, self->item_size);
-				i--;
-			}
-			dest = (char *)(self->buffer) + (index * self->item_size);
-			src = (char *)(items);
-			memcpy(dest, src, self->item_size);
-			items += self->item_size;
-			index++;
-			self->length++;
-			items_left--;
+			splice->dest = (char *)(self->buffer)
+				+ (splice->i * self->item_size);
+			splice->src = (char *)(self->buffer)
+				+ ((splice->i - 1) * self->item_size);
+			ft_memcpy(splice->dest, splice->src, self->item_size);
+			splice->i--;
 		}
+		splice->dest = (char *)(self->buffer)
+			+ (splice->index * self->item_size);
+		splice->src = (char *)(splice->items);
+		ft_memcpy(splice->dest, splice->src, self->item_size);
+		splice->items += self->item_size;
+		splice->index++;
+		self->length++;
+		splice->items_left--;
 	}
 }
 
@@ -77,7 +86,8 @@ static void	ensure_capacity(t_vec *self, size_t n)
 }
 
 static void	exit_on_error(unsigned int line)
-{
+{	
+	print_stacktrace();
 	fprintf(stderr, "%s:%d - Out of Bounds\n", __FILE__, line);
 	exit(EXIT_FAILURE);
 }

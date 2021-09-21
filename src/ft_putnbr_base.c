@@ -26,7 +26,7 @@ int	ft_putnbr_base(unsigned long n, char *base)
 	}
 	if (n >= base_length)
 	{
-		num_length += ft_putnbrBase(n / base_length, base);
+		num_length += ft_putnbr_base(n / base_length, base);
 		write(1, &base[n % base_length], 1);
 	}
 	else if (n < base_length)

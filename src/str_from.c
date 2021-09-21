@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_ref.c                                          :+:      :+:    :+:   */
+/*   str_from.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbielik <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 16:16:44 by pbielik           #+#    #+#             */
-/*   Updated: 2021/09/21 16:16:45 by pbielik          ###   ########.fr       */
+/*   Created: 2021/09/21 17:14:38 by pbielik           #+#    #+#             */
+/*   Updated: 2021/09/21 17:14:39 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec.h"
+#include "str.h"
 
-static void	exit_on_error(unsigned int line);
-
-void	*vec_ref(const t_vec *self, size_t index)
+t_str	str_from(const char *cstr)
 {
-	if (index < self->length)
-		return (self->buffer + (index * self->item_size));
-	else
+	t_str	newstr;
+	int		i;
+	char	null;
+
+	null = '\0';
+	i = 0;
+	newstr = str_value(1);
+	while (*(cstr + i) != null)
 	{
-		print_stacktrace();
-		exit_on_error(__LINE__);
+		vec_set(&newstr, i, cstr + i);
+		i++;
 	}
-	return (NULL);
-}
-
-static void	exit_on_error(unsigned int line)
-{
-	fprintf(stderr, "%s:%d - Out of Bounds\n", __FILE__, line);
-	exit(EXIT_FAILURE);
+	vec_set(&newstr, i, &null);
+	return (newstr);
 }

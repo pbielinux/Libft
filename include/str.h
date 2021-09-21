@@ -13,6 +13,8 @@
 #ifndef STR_H
 # define STR_H
 
+# include <string.h>
+# include <stdio.h>
 # include "vec.h"
 
 /**
@@ -65,12 +67,7 @@ t_str		str_from(const char *cstr);
  * Starting from `index`, remove `delete_count` items from `self`,
  * and insert `insert_count` values from `cstr` at that index of `self`.
  */
-void		str_splice(
-				t_str *self,
-				size_t index,
-				size_t delete_count,
-				const char *cstr,
-				size_t insert_count);
+void		str_splice(t_str *self, t_splice splice);
 
 /**
  * Append a C-string to a str. Will dynamically grow the str's 

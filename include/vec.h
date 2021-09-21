@@ -40,6 +40,18 @@ typedef struct s_vec
 	void	*buffer;
 }				t_vec;
 
+typedef struct s_splice
+{
+	size_t		index;
+	size_t		delete_count;
+	const void	*items;
+	size_t		insert_count;
+	char		*dest;
+	char		*src;
+	int			items_left;
+	int			i;
+}	t_splice;
+
 /* Constructor / Destructor */
 
 /**
@@ -120,17 +132,6 @@ void		vec_set(t_vec *self, size_t index, const void *value);
  * vec_splice(&v, 0, 3, a, 1)   | [800, 400]
  */
 
-typedef struct s_count
-{
-	size_t	delete_count;
-	size_t	insert_count;
-}	t_count;
-
-void		vec_splice(
-				t_vec *self,
-				size_t index,
-				size_t delete_count,
-				const void *items,
-				size_t insert_count);
+void		vec_splice(t_vec *self, t_splice splice);
 
 #endif

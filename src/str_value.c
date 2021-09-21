@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_ref.c                                          :+:      :+:    :+:   */
+/*   str_value.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbielik <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 16:16:44 by pbielik           #+#    #+#             */
-/*   Updated: 2021/09/21 16:16:45 by pbielik          ###   ########.fr       */
+/*   Created: 2021/09/21 17:15:52 by pbielik           #+#    #+#             */
+/*   Updated: 2021/09/21 17:15:54 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec.h"
+#include "str.h"
 
-static void	exit_on_error(unsigned int line);
-
-void	*vec_ref(const t_vec *self, size_t index)
+t_str	str_value(size_t capacity)
 {
-	if (index < self->length)
-		return (self->buffer + (index * self->item_size));
-	else
-	{
-		print_stacktrace();
-		exit_on_error(__LINE__);
-	}
-	return (NULL);
-}
+	t_str	s;
+	char	null;
 
-static void	exit_on_error(unsigned int line)
-{
-	fprintf(stderr, "%s:%d - Out of Bounds\n", __FILE__, line);
-	exit(EXIT_FAILURE);
+	null = '\0';
+	s = vec_value(capacity + 1, sizeof(char));
+	vec_set(&s, 0, &null);
+	return (s);
 }
