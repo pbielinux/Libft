@@ -50,7 +50,7 @@ typedef struct s_splice
 	char		*dest;
 	char		*src;
 	int			items_left;
-	int			i;
+	size_t		i;
 }	t_splice;
 
 /* Constructor / Destructor */

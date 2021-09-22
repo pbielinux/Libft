@@ -14,9 +14,9 @@
 
 bool	vec_equals(const t_vec *self, const t_vec *other)
 {
-	int		current_pos;
-	char	*self_char;
-	char	*other_char;
+	unsigned long	current_pos;
+	char			*self_char;
+	char			*other_char;
 
 	if (self->length != other->length)
 		return (false);
