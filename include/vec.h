@@ -111,6 +111,15 @@ void		vec_get(const t_vec *self, size_t index, void *out);
  */
 void		vec_set(t_vec *self, size_t index, const void *value);
 
+void	*vec_pop(t_vec *self);
+
+void	*vec_shift(t_vec *self);
+
+void	vec_push(t_vec *self, void *value);
+
+void	vec_swap(t_vec *self, size_t from, size_t to);
+
+
 /**
  * Starting from `index`, remove `delete_count` items from `self`'s buffer, 
  * and insert `insert_count` values from `items` at that index of `self`.

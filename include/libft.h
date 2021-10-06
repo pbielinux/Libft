@@ -24,6 +24,7 @@
 # include "str.h"
 # include "token.h"
 # include "vec.h"
+# include "deque.h"
 
 typedef struct s_list
 {

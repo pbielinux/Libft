@@ -16,10 +16,8 @@ static void	exit_on_error(unsigned int line);
 
 char	str_get(const t_str *self, size_t index)
 {
-	if ((index < 0) || (index >= str_length(self)))
-	{
+	if (index >= str_length(self))
 		exit_on_error(__LINE__);
-	}
 	return (*((char *)vec_ref(self, index)));
 }
 
