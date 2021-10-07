@@ -115,6 +115,8 @@ void	*vec_pop(t_vec *self);
 
 void	*vec_shift(t_vec *self);
 
+void	vec_unshift(t_vec *self, const void *value);
+
 void	vec_push(t_vec *self, void *value);
 
 void	vec_swap(t_vec *self, size_t from, size_t to);
