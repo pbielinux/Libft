@@ -35,7 +35,7 @@ void	vec_splice(t_vec *self, t_splice *splice)
 					+ (splice->i * self->item_size);
 				splice->src = (char *)(self->buffer)
 					+ ((splice->i + 1) * self->item_size);
-				ft_memcpy(splice->dest, splice->src, self->item_size);
+				memcpy(splice->dest, splice->src, self->item_size);
 				splice->i++;
 			}
 			self->length--;
@@ -58,13 +58,13 @@ static void	insert_items(t_vec *self, t_splice *splice)
 				+ (splice->i * self->item_size);
 			splice->src = (char *)(self->buffer)
 				+ ((splice->i - 1) * self->item_size);
-			ft_memcpy(splice->dest, splice->src, self->item_size);
+			memcpy(splice->dest, splice->src, self->item_size);
 			splice->i--;
 		}
 		splice->dest = (char *)(self->buffer)
 			+ (splice->index * self->item_size);
 		splice->src = (char *)(splice->items);
-		ft_memcpy(splice->dest, splice->src, self->item_size);
+		memcpy(splice->dest, splice->src, self->item_size);
 		splice->items += self->item_size;
 		splice->index++;
 		self->length++;

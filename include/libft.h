@@ -105,5 +105,6 @@ int					ft_putnbr_base(unsigned long n, char *base);
 long				ft_strtol(const char *nptr, char **endptr, int base);
 int					ft_lerpi(int first, int second, double p);
 double				ft_map(double nb, t_range range);
+size_t				ft_array_length(void **array);
 
 #endif
