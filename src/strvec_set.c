@@ -15,15 +15,10 @@
 void	strvec_set(t_strvec *self, size_t index, t_str value)
 {
 	t_str		old_str;
-	t_splice	splice;
 
-	splice.index = vec_length(self);
-	splice.delete_count = 0;
-	splice.items = &value;
-	splice.insert_count = 1;
 	if (index == vec_length(self))
 	{
-		vec_splice(self, &splice);
+		vec_splice(self, splice_args(vec_length(self), 0, &value, 1));
 	}
 	else
 	{

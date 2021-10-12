@@ -14,17 +14,8 @@
 
 void	vec_set(t_vec *self, size_t index, const void *value)
 {
-	t_splice	splice;
-
-	splice.index = index;
-	splice.delete_count = 0;
-	splice.items = value;
-	splice.insert_count = 1;
 	if (index == self->length)
-		vec_splice(self, &splice);
+		vec_splice(self, splice_args(index, 0, value, 1));
 	else
-	{
-		splice.delete_count = 1;
-		vec_splice(self, &splice);
-	}
+		vec_splice(self, splice_args(index, 1, value, 1));
 }

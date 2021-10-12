@@ -17,33 +17,33 @@ static void	ensure_capacity(t_vec *self, size_t n);
 static void	exit_on_error(unsigned int line);
 static void	insert_items(t_vec *self, t_splice *splice);
 
-void	vec_splice(t_vec *self, t_splice *splice)
+void	vec_splice(t_vec *self, t_splice splice)
 {
-	if (((splice->index + splice->delete_count) > self->length)
-		|| (splice->index > self->length))
+	if (((splice.index + splice.delete_count) > self->length)
+		|| (splice.index > self->length))
 		exit_on_error(__LINE__);
-	ensure_capacity(self, splice->index + splice->insert_count);
-	if (splice->delete_count > 0)
+	ensure_capacity(self, splice.index + splice.insert_count);
+	if (splice.delete_count > 0)
 	{
-		splice->items_left = splice->delete_count;
-		while (splice->items_left > 0)
+		splice.items_left = splice.delete_count;
+		while (splice.items_left > 0)
 		{
-			splice->i = splice->index;
-			while (splice->i < (self->length - 1))
+			splice.i = splice.index;
+			while (splice.i < (self->length - 1))
 			{
-				splice->dest = (char *)(self->buffer)
-					+ (splice->i * self->item_size);
-				splice->src = (char *)(self->buffer)
-					+ ((splice->i + 1) * self->item_size);
-				memcpy(splice->dest, splice->src, self->item_size);
-				splice->i++;
+				splice.dest = (char *)(self->buffer)
+					+ (splice.i * self->item_size);
+				splice.src = (char *)(self->buffer)
+					+ ((splice.i + 1) * self->item_size);
+				memcpy(splice.dest, splice.src, self->item_size);
+				splice.i++;
 			}
 			self->length--;
-			splice->items_left--;
+			splice.items_left--;
 		}
 	}
-	if (splice->insert_count > 0)
-		insert_items(self, splice);
+	if (splice.insert_count > 0)
+		insert_items(self, &splice);
 }
 
 static void	insert_items(t_vec *self, t_splice *splice)

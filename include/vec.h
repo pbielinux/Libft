@@ -143,6 +143,8 @@ void		vec_swap(t_vec *self, size_t from, size_t to);
  * vec_splice(&v, 0, 3, a, 1)   | [800, 400]
  */
 
-void		vec_splice(t_vec *self, t_splice *splice);
+t_splice	splice_args(size_t index, size_t delete_count, const void *items, size_t insert_count);
+
+void		vec_splice(t_vec *self, t_splice splice);
 
 #endif

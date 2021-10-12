@@ -16,21 +16,10 @@ static void	exit_on_error(unsigned int line);
 
 void	str_set(t_str *self, size_t index, const char value)
 {
-	t_splice	splice;
-
-	splice.index = index;
-	splice.delete_count = 1;
-	splice.items = &value;
-	splice.insert_count = 1;
 	if (index < str_length(self))
-	{
-		str_splice(self, &splice);
-	}
+		str_splice(self, splice_args(index, 1, &value, 1));
 	else if (index == str_length(self))
-	{
-		splice.delete_count = 0;
-		str_splice(self, &splice);
-	}
+		str_splice(self, splice_args(index, 0, &value, 1));
 	else
 		exit_on_error(__LINE__);
 }
